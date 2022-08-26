@@ -44,4 +44,6 @@ fn main() {
     println!("Wallpaper updated! {:?}", wallpaper::get());
 }
 
+// Docs & Thanks
 // Thank you https://crates.io/crates/wallpaper#README. Christopher Knight, if that's you. You're a saint.
+// https://awik.io/generate-random-images-unsplash-without-using-api/
