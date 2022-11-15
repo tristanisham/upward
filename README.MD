@@ -6,7 +6,7 @@ Upward⬆ is my personal utility for updating my Desktop programatically. If you
 ```sh
 cargo install --git https://github.com/tristanisham/upward.git
 ```
-So far, this program has been only tested on Windows. It should mostly be cross-platform though (with libOpenSSL (Rust, write a good native TLS/SSL lib already) being a known dependency on Linux).
+Upward is cross-platform.
 
 ## Using
 ```sh
