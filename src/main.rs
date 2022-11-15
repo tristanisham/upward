@@ -3,7 +3,7 @@ use wallpaper;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
-#[clap(author, version, about, long_about = None)]
+#[clap(author, about, version, long_about = None)]
 struct Args {
     /// x dimensions for new dekstop background
     #[clap(short, long, value_parser, default_value_t = 1920)]

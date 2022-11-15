@@ -1,7 +1,8 @@
 [package]
 edition = "2021"
 name = "upward"
-version = "0.1.0"
+version = "0.1.1"
+description = "A utility for updating your background using beautiful, permissively licensed images."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
