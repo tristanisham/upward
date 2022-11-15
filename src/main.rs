@@ -15,6 +15,7 @@ struct Args {
 
     #[clap(short, long, value_parser, default_value_t = String::from(""))]
     search: String,
+
 }
 
 fn main() {
