@@ -1,36 +1,33 @@
-use clap::Parser;
 use wallpaper;
 
-/// Simple program to greet a person
-#[derive(Parser, Debug)]
-#[clap(author, about, version, long_about = None)]
-struct Args {
-    /// x dimensions for new dekstop background
-    #[clap(short, long, value_parser, default_value_t = 1920)]
-    x: i32,
+use crate::cli::Args;
+mod cli;
 
-    /// y dimensions for new dekstop background
-    #[clap(short, long, value_parser, default_value_t = 1080)]
-    y: i32,
+// /// Simple program to greet a person
+// #[derive(Parser, Debug)]
+// #[clap(author, about, version, long_about = None)]
+// struct Args {
+//     /// x dimensions for new dekstop background
+//     #[clap(short, long, value_parser, default_value_t = 1920)]
+//     x: i32,
 
-    #[clap(short, long, value_parser, default_value_t = String::from(""))]
-    search: String,
+//     /// y dimensions for new dekstop background
+//     #[clap(short, long, value_parser, default_value_t = 1080)]
+//     y: i32,
 
-}
+//     #[clap(short, long, value_parser, default_value_t = String::from(""))]
+//     search: String,
+
+// }
 
 fn main() {
-    // if std::env::consts::OS != "windows" {
-    //     println!("Warning! This program has only been tested on Windows and may not perform as expected.\nCheck https://github.com/tristanisham/upward for compatability updates");
-    // }
+    let args: Vec<String> = std::env::args().into_iter().collect();
 
-    let args = Args::parse();
-    let screen_size: (i32, i32) = (args.x, args.y);
-    let queries: Vec<&str> = args.search.trim().split_ascii_whitespace().collect();
-    let search_terms = queries.join(",");
+    let args = Args::parse(&args);
     // Sets the wallpaper for the current desktop from a URL.
     let url = format!(
         "https://source.unsplash.com/random/{}x{}?{}",
-        screen_size.0, screen_size.1, search_terms
+        args.x, args.y, args.description.join(",")
     );
     // println!("{url}");
     wallpaper::set_from_url(&url).unwrap();
@@ -42,7 +39,7 @@ fn main() {
     //     wallpaper::get()
     // );
 
-    println!("Wallpaper updated! {:?}", wallpaper::get());
+    println!("Wallpaper updated! {}", wallpaper::get().unwrap_or(url));
 }
 
 // Docs & Thanks

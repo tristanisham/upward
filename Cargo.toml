@@ -7,7 +7,6 @@ description = "A utility for updating your background using beautiful, permissiv
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "3.2.17", features = ["derive"] }
 wallpaper = {version = "3", features = ["from_url"]}
 
 [profile.release]
