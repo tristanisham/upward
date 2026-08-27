@@ -1,5 +1,3 @@
-use wallpaper;
-
 use crate::cli::Args;
 mod cli;
 
@@ -21,7 +19,7 @@ mod cli;
 // }
 
 fn main() {
-    let args: Vec<String> = std::env::args().into_iter().collect();
+    let args: Vec<String> = std::env::args().collect();
 
     let args = Args::parse(&args);
     // Sets the wallpaper for the current desktop from a URL.

@@ -7,12 +7,12 @@ pub struct Args {
 }
 
 impl Args {
-    pub fn parse(args: &Vec<String>) -> Self {
+    pub fn parse(args: &[String]) -> Self {
         let mut x: u32 = 0;
         let mut y: u32 = 0;
         let mut description: Vec<String> = vec![];
 
-        for (i, arg) in args.into_iter().enumerate() {
+        for (i, arg) in args.iter().enumerate() {
             match arg.as_str() {
                 "-x" | "--x" => {
                     if args.len() > i + 1 {
