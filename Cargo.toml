@@ -7,7 +7,12 @@ description = "A utility for updating your background using beautiful, permissiv
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wallpaper = {version = "3", features = ["from_url"]}
+# `wallpaper`'s own `from_url` feature pulls in reqwest 0.11 -> hyper 0.14 -> h2
+# 0.3, which is stuck on RUSTSEC-2026-0258. We download the image ourselves
+# instead and hand the crate a path.
+wallpaper = "3"
+dirs = "6"
+ureq = "3"
 
 [profile.release]
 strip = true

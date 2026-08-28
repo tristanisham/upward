@@ -1,5 +1,6 @@
 use crate::cli::Args;
 mod cli;
+mod download;
 
 // /// Simple program to greet a person
 // #[derive(Parser, Debug)]
@@ -28,7 +29,8 @@ fn main() {
         args.x, args.y, args.description.join(",")
     );
     // println!("{url}");
-    wallpaper::set_from_url(&url).unwrap();
+    let path = download::image(&url).expect("failed to download wallpaper");
+    wallpaper::set_from_path(&path).expect("failed to set wallpaper");
     // Returns the wallpaper of the current desktop.
     // println!(
     //     "x:{}, y:{} | {:?}",
