@@ -30,7 +30,8 @@ fn main() {
         args.x, args.y, args.description.join(",")
     );
     // println!("{url}");
-    wallpaper::set_from_url(&url).unwrap();
+    let path = download_image(&url).unwrap();
+    wallpaper::set_from_path(&path).unwrap();
     // Returns the wallpaper of the current desktop.
     // println!(
     //     "x:{}, y:{} | {:?}",
@@ -40,6 +41,19 @@ fn main() {
     // );
 
     println!("Wallpaper updated! {}", wallpaper::get().unwrap_or(url));
+}
+
+/// Downloads `url` into the user's cache directory and returns the file path.
+/// Mirrors what `wallpaper::set_from_url` does internally.
+fn download_image(url: &str) -> Result<String, Box<dyn std::error::Error>> {
+    let cache_dir = dirs::cache_dir().ok_or("no cache dir")?;
+    let file_path = cache_dir.join("wallpaper");
+
+    let mut response = ureq::get(url).call()?;
+    let mut file = std::fs::File::create(&file_path)?;
+    std::io::copy(&mut response.body_mut().as_reader(), &mut file)?;
+
+    Ok(file_path.to_str().ok_or("no file path")?.into())
 }
 
 // Docs & Thanks
